@@ -34,6 +34,10 @@ models:
       +materialized: view
       +schema: staging
     # marts:
+    dimensions:
+      +materialized: table
+      +schema: dim
+      +tags: ['dimensions']
 
 vars:
   ga4_dataset: 'bigquery-public-data.ga4_obfuscated_sample_ecommerce'
