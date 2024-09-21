@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_ga4__events
+    descriptions: "This table contains clickstream events from sites"
+    columns:
+      - name: event_id
+        description: This is a unique identifier for the event
+        tests:
+          - unique
+          - not_null
+  - name: stg_ga4__event_params_unnested
+    description: "This table contains event parameters. Originally it is stored in key-value pairs but it's been unnested here."
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null

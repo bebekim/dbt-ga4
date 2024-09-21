@@ -1,4 +1,3 @@
-
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
@@ -22,7 +21,6 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
-
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
@@ -34,6 +32,10 @@ models:
     # Config indicated by + and applies to all files under models/example/
     staging:
       +materialized: view
+      ga4:
+        +schema: stg_ga4
+        +tags: ['ga4', 'staging']
+    # marts:
 
 vars:
   ga4_dataset: 'bigquery-public-data.ga4_obfuscated_sample_ecommerce'
