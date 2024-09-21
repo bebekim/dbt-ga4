@@ -32,7 +32,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   dbttest:
     # Config indicated by + and applies to all files under models/example/
-    example:
+    staging:
       +materialized: view
 
 vars:

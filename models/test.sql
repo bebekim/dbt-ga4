@@ -1,0 +1,1 @@
+select * from {{  source('ga4', 'events')  }}
