@@ -1,3 +1,5 @@
+{{ config(materialized='view') }}
+
 with events as (
     select * from {{ ref('stg_ga4__events') }}
 ),
@@ -42,16 +44,21 @@ session_level_data as (
 
 final as (
     select 
-        session_id,
-        session_date,
-        session_start,
-        first_visit,
-        page_views,
-        searches,
-        session_start_time,
-        session_end_time,
-        timestamp_diff(session_end_time, session_start_time, second) as session_duration_seconds
-    from session_level_data
+        sld.session_id,
+        sld.session_date,
+        sld.session_start,
+        sld.first_visit,
+        sld.page_views,
+        sld.searches,
+        sld.session_start_time,
+        sld.session_end_time,
+        timestamp_diff(sld.session_end_time, sld.session_start_time, second) as session_duration_seconds,
+        ed.event_id as first_event_id,
+        ed.event_timestamp as first_event_timestamp
+    from session_level_data sld
+    left join event_data ed
+        on sld.session_id = ed.session_id
+        and ed.event_timestamp = sld.session_start_time
 )
 
 select * from final
