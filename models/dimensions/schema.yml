@@ -1,6 +1,11 @@
 version: 2
 
 models:
+  - name: dim_freshness
+    description: "Tracks the freshness of dimension models."
+    tests:
+      - dim_freshness
+
   - name: dim_devices
     description: "This view contains device related info from `stg_ga4__events` table." 
     columns:
