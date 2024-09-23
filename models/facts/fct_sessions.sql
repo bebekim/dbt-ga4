@@ -1,8 +1,3 @@
-{{ config(
-    materialized='view',
-    tags=['daily']
-) }}
-
 with events as (
     select * from {{ ref('stg_ga4__events') }}
 ),
@@ -45,18 +40,22 @@ session_level_data as (
         count(distinct event_id) as total_events
     from event_data
     group by session_id
+),
+
+final as (
+    select 
+        session_id,
+        session_date,
+        session_start,
+        first_visit,
+        page_views,
+        searches,
+        session_start_time,
+        session_end_time,
+        timestamp_diff(session_end_time, session_start_time, second) as session_duration_seconds,
+        event_id AS first_event_id,
+        total_events    
+    from session_level_data
 )
 
-select 
-    session_id,
-    session_date,
-    session_start,
-    first_visit,
-    page_views,
-    searches,
-    session_start_time,
-    session_end_time,
-    timestamp_diff(session_end_time, session_start_time, second) as session_duration_seconds,
-    event_id AS first_event_id,
-    total_events
-from session_level_data
+select * from final

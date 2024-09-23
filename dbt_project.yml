@@ -31,15 +31,15 @@ models:
   dbttest:
     staging:
       +materialized: view
-      +schema: ["staging"]
+      +schema: staging
     dimensions:
       +materialized: view
       +schema: dim
-      +tags: ["dimensions"]
+      +tags: ['dimensions']
     facts:
       +materialized: view
       +schema: fact
-      +tags: ["facts"]
+      +tags: ['facts']
 
 vars:
   ga4_dataset: 'bigquery-public-data.ga4_obfuscated_sample_ecommerce'
