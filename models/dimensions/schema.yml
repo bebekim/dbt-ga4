@@ -66,6 +66,16 @@ models:
     description: "This view contains traffic source related info from `stg_ga4__events` table."
     columns:
       - name: event_id
+        description: "The unique identifier for the event"
+        tests:
+          - not_null
+
+      - name: traffic_category
+        description: "The categorized traffic source"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['direct', 'organic_search', 'referral', 'paid_search', 'uncategorized', 'other']
 
       - name: traffic_source
         description: "The source of the traffic."
@@ -73,5 +83,17 @@ models:
       - name: traffic_source_medium
         description: "The medium of the traffic."
 
+      - name: traffic_source_name
+        description: "The name of the traffic source."
+
       - name: traffic_source_campaign
         description: "The campaign of the traffic."
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - event_id
+            - traffic_category
+            - traffic_source_medium
+            - traffic_source_name
+            - traffic_source
