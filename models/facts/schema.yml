@@ -1,5 +1,7 @@
 version: 2
 
 models:
-  - name: sessions
-    description: "This table contains key engagement related metrics from `stg_ga4__event_params_unnested` table." 
+  - name: fct_freshness
+    description: "This table contains the freshness of fact models." 
+    tests:
+      - fct_freshness
