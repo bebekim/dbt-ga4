@@ -39,3 +39,25 @@ models:
         tests:
           - not_null
 
+  - name: dim_locations
+    description: "This view contains location related info from `stg_ga4__events` table."
+    columns:
+      - name: event_id
+
+      - name: continent
+        description: "The continent of the location."
+
+      - name: sub_continent
+        description: "The sub-continent of the location."
+
+      - name: country
+        description: "The country of the location."
+
+      - name: region
+        description: "The region of the location."
+
+      - name: city
+        description: "The city of the location."
+
+      - name: metro
+        description: "The metro of the location."
