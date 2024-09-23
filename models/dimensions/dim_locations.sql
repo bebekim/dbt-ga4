@@ -10,7 +10,7 @@ with events as (
 final as (
     select
         event_id,
-        event_timestamp,
+        CAST(event_timestamp AS TIMESTAMP) as event_timestamp,
         geo.continent as continent,
         geo.sub_continent as sub_continent,
         geo.country as country,
