@@ -8,8 +8,9 @@ with events as (
 ),
 
 final as (
-    select distinct
+    select
         event_id,
+        event_timestamp,
         geo.continent as continent,
         geo.sub_continent as sub_continent,
         geo.country as country,

@@ -10,6 +10,7 @@ with events as (
 categorized_sources as (
     select
         event_id,
+        event_timestamp,
         case
             when traffic_source.medium = '(none)' and traffic_source.name = '(direct)' then 'direct'
             when traffic_source.medium = 'organic' and traffic_source.name = '(organic)' then 'organic_search'
@@ -40,12 +41,18 @@ categorized_sources as (
             'unknown_source'
         ) as cleaned_source
     from events
+),
+
+
+final as (
+    select
+      event_id,
+      event_timestamp
+      traffic_category,
+      cleaned_medium as traffic_source_medium,
+      cleaned_name as traffic_source_name,
+      cleaned_source as traffic_source
+    from categorized_sources
 )
 
-select
-    event_id,
-    traffic_category,
-    cleaned_medium as traffic_source_medium,
-    cleaned_name as traffic_source_name,
-    cleaned_source as traffic_source
-from categorized_sources
+select * from final

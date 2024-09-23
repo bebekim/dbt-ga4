@@ -9,6 +9,11 @@ models:
           - unique
           - not_null
 
+      - name: event_timestamp
+        description: "The timestamp of the event."
+        tests:
+          - not_null
+
       - name: device_category
         description: "The category of the device."
         tests:
@@ -44,6 +49,12 @@ models:
     columns:
       - name: event_id
 
+      - name: event_timestamp
+        description: "The timestamp of the event."
+        tests:
+          - not_null
+
+
       - name: continent
         description: "The continent of the location."
 
@@ -69,6 +80,12 @@ models:
         description: "The unique identifier for the event"
         tests:
           - not_null
+
+      - name: event_timestamp
+        description: "The timestamp of the event."
+        tests:
+          - not_null
+
 
       - name: traffic_category
         description: "The categorized traffic source"
