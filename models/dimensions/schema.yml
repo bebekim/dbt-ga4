@@ -1,26 +1,41 @@
 version: 2
 
 models:
-  - name: devices
+  - name: dim_devices
     description: "This view contains device related info from `stg_ga4__events` table." 
     columns:
       - name: event_id
         tests:
           - unique
           - not_null
+
       - name: device_category
         description: "The category of the device."
         tests:
           - not_null
           - accepted_values:
               values: ['mobile', 'desktop', 'tablet']
+      
       - name: device_mobile_brand_name
         description: "The brand name of the mobile device."
+        tests:
+          - not_null
+
       - name: device_mobile_model_name
         description: "The model name of the mobile device."
+        tests:
+          - not_null
+
       - name: device_mobile_marketing_name
+        description: "The marketing name of the mobile device."
+        tests:
+          - not_null
+
       - name: device_operating_system
         description: "The operating system of the device."
+
       - name: device_operating_system_version
         description: "The version of the operating system of the device."
+        tests:
+          - not_null
 

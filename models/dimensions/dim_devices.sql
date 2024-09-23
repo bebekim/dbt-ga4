@@ -14,7 +14,7 @@ final as (
         device_mobile_brand_name,
         device_mobile_model_name,
         device_mobile_marketing_name,
-        device_mobile_os_hardware_model,
+        CAST(device_mobile_os_hardware_model AS INT64) as device_mobile_os_hardware_model,
         device_operating_system,
         device_operating_system_version
     from events
