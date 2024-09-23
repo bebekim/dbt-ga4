@@ -61,3 +61,17 @@ models:
 
       - name: metro
         description: "The metro of the location."
+
+  - name: dim_traffic_sources
+    description: "This view contains traffic source related info from `stg_ga4__events` table."
+    columns:
+      - name: event_id
+
+      - name: traffic_source
+        description: "The source of the traffic."
+
+      - name: traffic_source_medium
+        description: "The medium of the traffic."
+
+      - name: traffic_source_campaign
+        description: "The campaign of the traffic."
